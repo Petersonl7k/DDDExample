@@ -10,7 +10,7 @@ namespace Domain.Interfaces
     public interface IVeiculoService
     {
 
-        Task PostAsync(VeiculoCommand command);
+        Task<string> PostAsync(VeiculoCommand command);
         void PostAsync();
         void GetAsync();
     }
