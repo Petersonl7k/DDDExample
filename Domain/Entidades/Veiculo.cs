@@ -12,9 +12,9 @@ namespace Domain.Entidades
         public int VeiculoID { get; set; }
         public string Placa { get; set; }
         public int AnoFabricacao { get; set; }
-        public ETipoVeiculo tipoVeiculo { get; set; }
+        public ETipoVeiculo TipoVeiculo { get; set; }
         public string Estado {  get; set; }
-        public EMontadora montadora { get; set; }
+        public EMontadora Montadora { get; set; }
         public bool Alugado { get; set; } = false;
     }
 }

@@ -38,7 +38,7 @@ namespace Service.Services
             {
                 return "O Tipo de Veiculo não é permitido";
             }
-            return "Cadastro realizado com sucesso";
+            return _veiculoRepository.PostAsync(command);
         }
 
         public void PostAsync()
