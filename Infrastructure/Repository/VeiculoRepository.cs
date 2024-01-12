@@ -1,33 +1,48 @@
-﻿using Domain.Entidades;
-using Domain.Interfaces;
-using Domain.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dapper;
 using Domain;
-using Microsoft.Data.SqlClient;
-using Dapper;
+using Domain.Commands;
+using Domain.Entidades;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Infrastructure.Repository
 {
     public class VeiculoRepository: IVeiculoRepository
+   
     {
-        private string stringconnection = @"Insert Into Veiculo(Placa, AnoFabricacao, TipoVeiculoID, Estado, MontadoraId)
-Values (@Placa, @AnoFabricacao, @TipoVeiculoID, @Estado, @MontadoraId)";
-        public async Task<string> PostAsync(Veiculo command)
+        string conexao = @"Server=(localdb)\mssqllocaldb;Database=AluguelVeiculos;Trusted_Connection=True;MultipleActiveResultSets=True";
+        public async Task<IEnumerable<VeiculoCommand>> GetAlugado()
         {
-            string queryinsert = "";
-            using (var conn = new SqlConnection())
+            string querygetalug = @"Select * From Veiculo Where Alugado = 1";
+            using (SqlConnection conn = new SqlConnection(conexao))
+            {   
+                return await conn.QueryAsync<VeiculoCommand>(querygetalug);
+            }
+
+        }
+
+        public async Task<IEnumerable<VeiculoCommand>> GetDisponivel()
+        {
+            string querygetdisp = @"Select * From Veiculo Where Alugado = 0";
+            using (SqlConnection conn = new SqlConnection(conexao))
+            {
+                return await conn.QueryAsync<VeiculoCommand>(querygetdisp);
+            }
+          
+        }
+        public async Task<string> PostAsync(Veiculocommand command)
+        {
+            string queryinsert = @"Insert Into Veiculo(Placa, AnoFabricacao, TipoVeiculoID, Estado, MontadoraId)
+            Values (@Placa, @AnoFabricacao, @TipoVeiculoID, @Estado, @MontadoraId)";
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
                 conn.Execute(queryinsert, new
                 {
                     Placa = command.Placa,
                     AnoFabricacao = command.AnoFabricacao,
-                    TipoVeiculoID = command.TipoVeiculo,
+                    TipoVeiculoID = (int)command.TipoVeiculo,
                     Estado = command.Estado,
-                    MontadoraID = command.Montadora,
+                    MontadoraID = (int)command.Montadora,
                 });
                 return "Veiculo cadastrado com sucesso _|_";
             }
@@ -39,6 +54,11 @@ Values (@Placa, @AnoFabricacao, @TipoVeiculoID, @Estado, @MontadoraId)";
         public void GetAsync() 
         {
 
+        }
+
+        public Task<string> PostAsync(VeiculoCommand command)
+        {
+            throw new NotImplementedException();
         }
     }
 }

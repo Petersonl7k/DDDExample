@@ -35,5 +35,17 @@ namespace Application.Controllers
         {
             return Ok();
         }
+        [HttpGet]
+        [Route("BuscarAlugado")]
+        public async Task<IActionResult> GetAlugado()
+        {
+            return Ok(await _veiculoService.GetAlugado());
+        }
+        [HttpGet]
+        [Route("BuscarDisponivel")]
+        public async Task<IActionResult> GetDisponivel()
+        {
+            return Ok(await _veiculoService.GetDisponivel());
+        }
     }
 }

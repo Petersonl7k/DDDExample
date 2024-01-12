@@ -1,9 +1,4 @@
 ﻿using Domain.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
@@ -13,5 +8,9 @@ namespace Domain.Interfaces
         Task<string> PostAsync(VeiculoCommand command);
         void PostAsync();
         void GetAsync();
+        Task<IEnumerable<VeiculoCommand>> GetAlugado();
+        Task<IEnumerable<VeiculoCommand>> GetDisponivel();
+        //Task<string> GetDisponivel(VeiculoCommand command);
+        //Task<string> GetAlugado(VeiculoCommand command);
     }
 }

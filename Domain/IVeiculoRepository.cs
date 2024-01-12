@@ -1,17 +1,14 @@
-﻿using Domain.Entidades;
-using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Commands;
 
 namespace Domain
 {
-  public interface IVeiculoRepository 
+    public interface IVeiculoRepository 
   {
-   Task<string> PostAsync(Veiculo command);
+   Task<string> PostAsync(VeiculoCommand command);
    void PostAsync();
    void GetAsync();
-  }
+   Task<IEnumerable<VeiculoCommand>> GetDisponivel();
+   Task<IEnumerable<VeiculoCommand>> GetAlugado();
+        //*Task<string> GetAlugado(VeiculoCommand command*);
+    }
 }

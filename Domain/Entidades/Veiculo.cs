@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entidades
 {
-    public class Veiculo
+    public class Veiculocommand
     {
         public int VeiculoID { get; set; }
         public string Placa { get; set; }
