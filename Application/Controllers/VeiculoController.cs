@@ -1,8 +1,6 @@
 ﻿using Domain.Commands;
 using Domain.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Application.Controllers
 {

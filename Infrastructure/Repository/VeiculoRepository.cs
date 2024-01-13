@@ -2,7 +2,6 @@
 using Domain;
 using Domain.Commands;
 using Domain.Entidades;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace Infrastructure.Repository
