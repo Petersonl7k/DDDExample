@@ -23,9 +23,9 @@ namespace Application.Controllers
         }
         [HttpGet]
         [Route("SimularAluguel")]
-        public IActionResult GetAsync()
+        public async Task<IActionResult> GetSimalu()
         {
-            return Ok();
+            return Ok(await _veiculoService.GetSimalu());
         }
         [HttpPost]
         [Route("Alugar")]

@@ -9,6 +9,6 @@ namespace Domain
    void GetAsync();
    Task<IEnumerable<VeiculoCommand>> GetDisponivel();
    Task<IEnumerable<VeiculoCommand>> GetAlugado();
-        //*Task<string> GetAlugado(VeiculoCommand command*);
+   Task<IEnumerable<VeiculoCommand>> GetSimalu();
     }
 }

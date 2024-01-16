@@ -10,7 +10,6 @@ namespace Domain.Interfaces
         void GetAsync();
         Task<IEnumerable<VeiculoCommand>> GetAlugado();
         Task<IEnumerable<VeiculoCommand>> GetDisponivel();
-        //Task<string> GetDisponivel(VeiculoCommand command);
-        //Task<string> GetAlugado(VeiculoCommand command);
+        Task<IEnumerable<VeiculoCommand>> GetSimalu();
     }
 }

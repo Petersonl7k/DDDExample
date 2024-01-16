@@ -55,5 +55,9 @@ namespace Service.Services
         {
             return await _repository.GetDisponivel();
         }
+        public async Task<IEnumerable<VeiculoCommand>> GetSimalu()
+        {
+            return await _repository.GetSimalu();
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace Domain.Entidades
         public string Estado {  get; set; }
         public EMontadora Montadora { get; set; }
         public bool Alugado { get; set; } = false;
+        public decimal Preco { get; set; }
     }
 }
