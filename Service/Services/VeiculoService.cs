@@ -30,7 +30,7 @@ namespace Service.Services
             if (AnoAtual - command.AnoFabricacao > 5)
                 return "O Ano do veiculo é menor que o permitido";
 
-            //To do
+            //To do 
             //incluir somente carros do tipo SUV, Sedan e Hatch
             if (command.TipoVeiculo != ETipoVeiculo.SUV
                && command.TipoVeiculo != ETipoVeiculo.hatch
@@ -54,10 +54,6 @@ namespace Service.Services
         public async Task<IEnumerable<VeiculoCommand>> GetDisponivel()
         {
             return await _repository.GetDisponivel();
-        }
-        public async Task<IEnumerable<VeiculoCommand>> GetSimalu()
-        {
-            return await _repository.GetSimalu();
         }
     }
 }

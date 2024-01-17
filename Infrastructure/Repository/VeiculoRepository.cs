@@ -2,6 +2,7 @@
 using Domain;
 using Domain.Commands;
 using Domain.Entidades;
+using Domain.Enum;
 using System.Data.SqlClient;
 
 namespace Infrastructure.Repository
@@ -60,13 +61,17 @@ namespace Infrastructure.Repository
         {
             throw new NotImplementedException();
         }
-        public async Task<IEnumerable<VeiculoCommand>> GetSimalu()
+
+        public async Task<VeiculoPrecoCommand> GetPrecoDiaria(ETipoVeiculo tipoVeiculo)
         {
-            string querysimalug = @"Select Preco From Veiculo Where Alugado = 0";
-            using (SqlConnection conn = new SqlConnection(conexao))
+            string queryGetPrecoDiaria = @"Select * From VeiculoPreco Where TipoVeiculo = @TipoVeiculo";
+            using(SqlConnection conn = new SqlConnection(conexao))
             {
-                return await conn.QueryAsync<VeiculoCommand>(querysimalug);
+                return conn.QueryAsync<VeiculoPrecoCommand>(queryGetPrecoDiaria, new
+                {
+                    TipoVeiculo = tipoVeiculo
+                }).Result.FirstOrDefault();
             }
-        }
-    }
+    }   }
 }
+

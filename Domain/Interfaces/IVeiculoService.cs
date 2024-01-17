@@ -1,4 +1,5 @@
 ﻿using Domain.Commands;
+using Domain.Enum;
 
 namespace Domain.Interfaces
 {
@@ -11,5 +12,6 @@ namespace Domain.Interfaces
         Task<IEnumerable<VeiculoCommand>> GetAlugado();
         Task<IEnumerable<VeiculoCommand>> GetDisponivel();
         Task<IEnumerable<VeiculoCommand>> GetSimalu();
+        Task<VeiculoPreco> GetPrecoDiaria(ETipoVeiculo tipoveiculo);
     }
 }
