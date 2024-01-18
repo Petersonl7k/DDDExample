@@ -1,7 +1,8 @@
-﻿using Domain;
-using Domain.Commands;
+﻿using Domain.Commands;
+using Domain.Entidades;
 using Domain.Enum;
 using Domain.Interfaces;
+using Domain.ViewModel;
 
 namespace Service.Services
 {
@@ -54,6 +55,36 @@ namespace Service.Services
         public async Task<IEnumerable<VeiculoCommand>> GetDisponivel()
         {
             return await _repository.GetDisponivel();
+        }
+
+        public Task<IEnumerable<VeiculoCommand>> GetSimalu()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<VeiculoPreco> GetPrecoDiaria(ETipoVeiculo tipoveiculo)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<SimularVeiculoAluguelViewModel> SimularVeiculoAlguel(int totalDiasSimulado, ETipoVeiculo tipoVeiculo)
+        {
+            var veiculoPreco = await _repository.GetPrecoDIaria(tipoVeiculo);
+            double taxaEstadual = 10.50;
+            double taxaFederal = 3.5;
+            double taxamunicipal = 13.5;
+
+            var simulacao = new SimularVeiculoAluguelViewModel();
+            if (tipoVeiculo == ETipoVeiculo.SUV && totalDiasSimulado > 45)
+            {
+                return null;
+            }
+            simulacao.TotalDiasSimulado = totalDiasSimulado;
+            simulacao.Taxas = (decimal)(taxamunicipal + taxaEstadual + taxaFederal);
+            simulacao.TipoVeiculo = tipoVeiculo;
+            simulacao.ValorDiaria = veiculoPreco.Preco;
+            simulacao.ValorTotal = (totalDiasSimulado * veiculoPreco.Preco) + simulacao.Taxas;
+            
+          return simulacao;
         }
     }
 }

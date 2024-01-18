@@ -1,8 +1,8 @@
 ﻿using Dapper;
-using Domain;
 using Domain.Commands;
 using Domain.Entidades;
 using Domain.Enum;
+using Domain.Interfaces;
 using System.Data.SqlClient;
 
 namespace Infrastructure.Repository
@@ -62,16 +62,19 @@ namespace Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<VeiculoPrecoCommand> GetPrecoDiaria(ETipoVeiculo tipoVeiculo)
+      
+
+        public async Task<VeiculoPrecoCommand> GetPrecoDIaria(ETipoVeiculo tipoveiculo)
         {
             string queryGetPrecoDiaria = @"Select * From VeiculoPreco Where TipoVeiculo = @TipoVeiculo";
-            using(SqlConnection conn = new SqlConnection(conexao))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
                 return conn.QueryAsync<VeiculoPrecoCommand>(queryGetPrecoDiaria, new
                 {
-                    TipoVeiculo = tipoVeiculo
+                    TipoVeiculo = tipoveiculo
                 }).Result.FirstOrDefault();
             }
-    }   }
+        }
+    }
 }
 

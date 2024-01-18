@@ -1,5 +1,7 @@
 ﻿using Domain.Commands;
+using Domain.Entidades;
 using Domain.Enum;
+using Domain.ViewModel;
 
 namespace Domain.Interfaces
 {
@@ -13,5 +15,6 @@ namespace Domain.Interfaces
         Task<IEnumerable<VeiculoCommand>> GetDisponivel();
         Task<IEnumerable<VeiculoCommand>> GetSimalu();
         Task<VeiculoPreco> GetPrecoDiaria(ETipoVeiculo tipoveiculo);
+        Task<SimularVeiculoAluguelViewModel> SimularVeiculoAlguel(int TotalDiasSimulado, ETipoVeiculo tipoVeiculo);
     }
 }
