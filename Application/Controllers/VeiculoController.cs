@@ -1,6 +1,7 @@
 ﻿using Domain.Commands;
 using Domain.Enum;
 using Domain.Interfaces;
+using Domain.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Controllers
@@ -30,8 +31,9 @@ namespace Application.Controllers
         }
         [HttpPost]
         [Route("Alugar")]
-        public IActionResult PostAsync()
+        public async Task<IActionResult> PostAlug([FromBody] AlugarVeiculoViewModelInput input)
         {
+            await _veiculoService.AlugarVeiculo(input);
             return Ok();
         }
         [HttpGet]

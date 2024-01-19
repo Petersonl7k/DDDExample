@@ -16,5 +16,6 @@ namespace Domain.Interfaces
         Task<IEnumerable<VeiculoCommand>> GetSimalu();
         Task<VeiculoPreco> GetPrecoDiaria(ETipoVeiculo tipoveiculo);
         Task<SimularVeiculoAluguelViewModel> SimularVeiculoAlguel(int TotalDiasSimulado, ETipoVeiculo tipoVeiculo);
+        Task AlugarVeiculo(AlugarVeiculoViewModelInput input);
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.Enum
     {
         SUV = 1,
         Sedan = 2,
-        hatch = 3,
+        Hatch = 3,
         Utilitario = 4,
     }
 }

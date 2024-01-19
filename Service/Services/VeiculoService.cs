@@ -34,7 +34,7 @@ namespace Service.Services
             //To do 
             //incluir somente carros do tipo SUV, Sedan e Hatch
             if (command.TipoVeiculo != ETipoVeiculo.SUV
-               && command.TipoVeiculo != ETipoVeiculo.hatch
+               && command.TipoVeiculo != ETipoVeiculo.Hatch
                && command.TipoVeiculo != ETipoVeiculo.Sedan
               )
             {
@@ -78,6 +78,18 @@ namespace Service.Services
             {
                 return null;
             }
+            if (tipoVeiculo == ETipoVeiculo.Sedan && totalDiasSimulado > 30)
+            {
+                return null;
+            }
+            if (tipoVeiculo == ETipoVeiculo.Hatch && totalDiasSimulado > 20)
+            {
+                return null;
+            }
+            if (tipoVeiculo == ETipoVeiculo.Utilitario && totalDiasSimulado > 40)
+            {
+                return null;
+            }
             simulacao.TotalDiasSimulado = totalDiasSimulado;
             simulacao.Taxas = (decimal)(taxamunicipal + taxaEstadual + taxaFederal);
             simulacao.TipoVeiculo = tipoVeiculo;
@@ -85,6 +97,32 @@ namespace Service.Services
             simulacao.ValorTotal = (totalDiasSimulado * veiculoPreco.Preco) + simulacao.Taxas;
             
           return simulacao;
+        }
+
+        public async Task AlugarVeiculo(AlugarVeiculoViewModelInput input)
+        {
+            var veiculoAlugado = await VeiculoAlugado(input.PlacaVeiculo);
+            if (veiculoAlugado)
+            {
+                // "Este Veículo não está mais disponível para alugar";
+            }
+            //To do
+            //Chamar método para validar habilitacao
+            //Chamar método para validar cartão
+            //Chamar método para datas
+            var valiData = await ValiData(input.DataRetirada, input.DataDevolucao);
+            if (valiData)
+            {
+                // "Data Incorreta"
+            }
+        }
+        private Task<bool> VeiculoAlugado(string placaVeiculo)
+        {
+            return _repository.VeiculoAlugado(placaVeiculo);
+        }
+        private Task<bool> ValiData(DateTime dataRetirada, DateTime dataDevolucao)
+        {
+            return _repository.ValiData(DateTime dataRetirada, DateTime dataDevolucao);
         }
     }
 }
