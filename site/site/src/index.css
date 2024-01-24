@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, SansSerif;
+    background-color: #808080;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+nav{
+    background-color: #000000;
+    padding: 15px 0;
+    text-align: center;
+}
+    nav a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        margin: 0 15px;
+    }
+
+    nav a:hover{
+        color: #f8f9fa;
+    }

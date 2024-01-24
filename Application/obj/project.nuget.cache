@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kuldmwHrNxEPbEgrEfLae1nlY3lU+ONe79yQYREplkmL1fQuzVaHcnI21RfMhcJfS6Hhn387IlUztt2q3EI+Mw==",
+  "dgSpecHash": "0T4qlqKAlU748Q0p0p2a+37srHNrnGSaS8ECdYOpJJ9Z/S7b5dxNMgm03j6clbV6vMh5B5MsRTXO4RBBzxzEsA==",
   "success": true,
   "projectFilePath": "C:\\Users\\peterson.psteixeira\\source\\repos\\Application\\Application\\Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\peterson.psteixeira\\.nuget\\packages\\creditcardvalidator\\3.0.1\\creditcardvalidator.3.0.1.nupkg.sha512",
     "C:\\Users\\peterson.psteixeira\\.nuget\\packages\\dapper\\2.1.28\\dapper.2.1.28.nupkg.sha512",
     "C:\\Users\\peterson.psteixeira\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\peterson.psteixeira\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

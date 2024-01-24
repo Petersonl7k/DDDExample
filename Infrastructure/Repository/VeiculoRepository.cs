@@ -90,7 +90,7 @@ namespace Infrastructure.Repository
         }
         public async Task<bool> ValiData(DateTime dataRetirada, DateTime dataDevolucao)
         {
-            await
+            return await 
         }
     }
 }

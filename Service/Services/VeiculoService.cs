@@ -1,4 +1,5 @@
-﻿using Domain.Commands;
+﻿using CreditCardValidator;
+using Domain.Commands;
 using Domain.Entidades;
 using Domain.Enum;
 using Domain.Interfaces;
@@ -106,10 +107,14 @@ namespace Service.Services
             {
                 // "Este Veículo não está mais disponível para alugar";
             }
-            //To do
-            //Chamar método para validar habilitacao
-            //Chamar método para validar cartão
-            //Chamar método para datas
+            CreditCardDetector detector = new CreditCardDetector(Convert.ToString(input.Cartao.Numero));
+            var bandeira = detector.CardNumber; // => 4012888888881881
+
+            if (!detector.IsValid())
+            {
+                //"Cartão Invalido";
+            } 
+
             var valiData = await ValiData(input.DataRetirada, input.DataDevolucao);
             if (valiData)
             {
@@ -122,7 +127,7 @@ namespace Service.Services
         }
         private Task<bool> ValiData(DateTime dataRetirada, DateTime dataDevolucao)
         {
-            return _repository.ValiData(DateTime dataRetirada, DateTime dataDevolucao);
+            return _repository.ValiData( dataRetirada, dataDevolucao);
         }
     }
 }
