@@ -100,7 +100,7 @@ namespace Service.Services
           return simulacao;
         }
 
-        public async Task AlugarVeiculo(AlugarVeiculoViewModelInput input)
+        public async Task<AlugarVeiculoViewModelInput>AlugarVeiculo(AlugarVeiculoViewModelInput input)
         {
             var veiculoAlugado = await VeiculoAlugado(input.PlacaVeiculo);
             if (veiculoAlugado)
@@ -110,16 +110,19 @@ namespace Service.Services
             CreditCardDetector detector = new CreditCardDetector(Convert.ToString(input.Cartao.Numero));
             var bandeira = detector.CardNumber; // => 4012888888881881
 
+            var Alugar = new AlugarVeiculoViewModelInput();
+
             if (!detector.IsValid())
             {
                 //"Cartão Invalido";
             } 
 
             var valiData = await ValiData(input.DataRetirada, input.DataDevolucao);
-            if (valiData)
+            if (valiData == false)
             {
-                // "Data Incorreta"
+               return null;
             }
+            return Alugar;
         }
         private Task<bool> VeiculoAlugado(string placaVeiculo)
         {
@@ -128,6 +131,16 @@ namespace Service.Services
         private Task<bool> ValiData(DateTime dataRetirada, DateTime dataDevolucao)
         {
             return _repository.ValiData( dataRetirada, dataDevolucao);
+        }
+
+        Task IVeiculoService.AlugarVeiculo(AlugarVeiculoViewModelInput input)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IVeiculoService.ValiData(DateTime DataRetirada, DateTime DataDevolucao)
+        {
+            throw new NotImplementedException();
         }
     }
 }

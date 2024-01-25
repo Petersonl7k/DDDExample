@@ -17,5 +17,7 @@ namespace Domain.Interfaces
         Task<VeiculoPreco> GetPrecoDiaria(ETipoVeiculo tipoveiculo);
         Task<SimularVeiculoAluguelViewModel> SimularVeiculoAlguel(int TotalDiasSimulado, ETipoVeiculo tipoVeiculo);
         Task AlugarVeiculo(AlugarVeiculoViewModelInput input);
+        Task<bool> ValiData(DateTime DataRetirada, DateTime DataDevolucao);
+
     }
 }

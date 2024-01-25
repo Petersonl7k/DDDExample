@@ -62,7 +62,7 @@ namespace Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-      
+
 
         public async Task<VeiculoPrecoCommand> GetPrecoDIaria(ETipoVeiculo tipoveiculo)
         {
@@ -78,19 +78,25 @@ namespace Infrastructure.Repository
         public async Task<bool> VeiculoAlugado(string placaVeiculo)
         {
             string queryDisponibilidadeVeiculo = @" Select Alugado FROM Veiculo Where Placa = @Placa";
-            using(SqlConnection conn = new SqlConnection(conexao))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
 
                 return conn.Query<bool>(queryDisponibilidadeVeiculo, new
                 {
                     Placa = placaVeiculo
                 }).FirstOrDefault();
-                
+
             }
         }
-        public async Task<bool> ValiData(DateTime dataRetirada, DateTime dataDevolucao)
+
+        public async Task<bool> ValiData(DateTime DataRetirada, DateTime DataDevolucao)
         {
-            return await 
+            int result = DateTime.Compare(DataRetirada, DataDevolucao);
+            if (result > 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
